@@ -1,9 +1,134 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My First Page</title>
+  <meta charset="UTF-8">
+  <title>Medical Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+    form {
+      max-width: 600px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+    }
+    .error {
+      color: red;
+      font-size: 0.9em;
+      display: none;
+    }
+  </style>
 </head>
 <body>
-  <h1>Hello, GitHub!</h1>
+
+  <h2>Patient Medical Form</h2>
+
+  <form id="medicalForm" onsubmit="return validateForm()">
+
+    <!-- Name -->
+    <label for="name">Full Name:</label>
+    <input type="text" id="name" name="name">
+    <span id="nameError" class="error">Please enter your full name.</span>
+
+    <!-- Age -->
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age" min="0" max="120">
+    <span id="ageError" class="error">Please enter a valid age between 0 and 120.</span>
+
+    <!-- Gender -->
+    <label for="gender">Gender:</label>
+    <select id="gender" name="gender">
+      <option value="">Select</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+      <option value="Other">Other</option>
+    </select>
+    <span id="genderError" class="error">Please select your gender.</span>
+
+    <!-- Blood Type -->
+    <label for="bloodType">Blood Type:</label>
+    <select id="bloodType" name="bloodType">
+      <option value="">Select</option>
+      <option value="A+">A+</option>
+      <option value="A-">A-</option>
+      <option value="B+">B+</option>
+      <option value="B-">B-</option>
+      <option value="AB+">AB+</option>
+      <option value="AB-">AB-</option>
+      <option value="O+">O+</option>
+      <option value="O-">O-</option>
+    </select>
+    <span id="bloodError" class="error">Please select a blood type.</span>
+
+    <!-- Email -->
+    <label for="email">Email Address:</label>
+    <input type="email" id="email" name="email">
+    <span id="emailError" class="error">Please enter a valid email address.</span>
+
+    <!-- Submit + Reset -->
+    <br><br>
+    <button type="submit">Submit</button>
+    <button type="reset">Reset</button>
+
+  </form>
+
+  <script>
+    function validateForm() {
+      let valid = true;
+
+      // Clear all errors
+      document.querySelectorAll('.error').forEach(el => el.style.display = 'none');
+
+      // Name check
+      const name = document.getElementById('name').value.trim();
+      if (name === "") {
+        document.getElementById('nameError').style.display = 'block';
+        valid = false;
+      }
+
+      // Age check
+      const age = parseInt(document.getElementById('age').value);
+      if (isNaN(age) || age < 0 || age > 120) {
+        document.getElementById('ageError').style.display = 'block';
+        valid = false;
+      }
+
+      // Gender check
+      const gender = document.getElementById('gender').value;
+      if (gender === "") {
+        document.getElementById('genderError').style.display = 'block';
+        valid = false;
+      }
+
+      // Blood Type check
+      const blood = document.getElementById('bloodType').value;
+      if (blood === "") {
+        document.getElementById('bloodError').style.display = 'block';
+        valid = false;
+      }
+
+      // Email check
+      const email = document.getElementById('email').value;
+      const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+      if (!emailRegex.test(email)) {
+        document.getElementById('emailError').style.display = 'block';
+        valid = false;
+      }
+
+      return valid;
+    }
+  </script>
+
 </body>
 </html>
