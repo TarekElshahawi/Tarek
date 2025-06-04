@@ -2,231 +2,228 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Patient Medical Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Medical Form</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
+    :root {
+      --primary: #3B82F6;
+      --light-bg: #f9fafb;
+      --input-border: #d1d5db;
+      --error-color: #ef4444;
     }
-
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f4f6f9;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--light-bg);
       margin: 0;
-      padding: 40px;
-      display: flex;
-      justify-content: center;
+      padding: 0;
     }
-
-    form {
-      background-color: #fff;
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #fff;
       padding: 30px;
-      max-width: 700px;
-      width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
     }
-
     h2 {
+      color: var(--primary);
       text-align: center;
+    }
+    .section {
+      margin-top: 30px;
+    }
+    .section h3 {
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 5px;
       margin-bottom: 20px;
-      color: #2c3e50;
     }
-
-    .form-group {
-      margin-bottom: 15px;
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
     }
-
     label {
       display: block;
-      font-weight: 600;
       margin-bottom: 5px;
+      font-weight: 600;
     }
-
-    input, select, textarea {
+    input, select, textarea, .slider {
       width: 100%;
       padding: 10px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
+      border-radius: 8px;
+      border: 1px solid var(--input-border);
       font-size: 1rem;
     }
-
     textarea {
       resize: vertical;
-      min-height: 80px;
+      min-height: 100px;
     }
-
-    .error {
-      color: red;
-      font-size: 0.9em;
-      display: none;
-      margin-top: 5px;
-    }
-
-    .form-row {
+    .slider-label {
       display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
+      justify-content: space-between;
+      font-weight: 500;
+      margin-bottom: 5px;
     }
-
-    .form-row .form-group {
-      flex: 1;
-      min-width: 200px;
-    }
-
     .buttons {
       display: flex;
       justify-content: space-between;
-      margin-top: 25px;
+      margin-top: 30px;
     }
-
     button {
-      padding: 10px 20px;
-      font-size: 1rem;
+      padding: 12px 25px;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
+      font-size: 1rem;
       cursor: pointer;
+      transition: 0.3s ease;
     }
-
-    button[type="submit"] {
-      background-color: #2ecc71;
-      color: white;
+    .submit-btn {
+      background: var(--primary);
+      color: #fff;
     }
-
-    button[type="reset"] {
-      background-color: #e74c3c;
-      color: white;
+    .reset-btn {
+      background: #e5e7eb;
+    }
+    .submit-btn:hover {
+      background: #2563eb;
+    }
+    .error {
+      color: var(--error-color);
+      font-size: 0.875rem;
+      display: none;
+      margin-top: 4px;
+    }
+    @media(max-width: 700px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
+<div class="container">
+  <h2>Patient Registration Form</h2>
 
-<form id="medicalForm" onsubmit="return validateForm()">
-  <h2>Patient Medical Information</h2>
+  <form id="medicalForm" onsubmit="return validateForm()">
 
-  <div class="form-row">
-    <div class="form-group">
-      <label for="name">Full Name</label>
-      <input type="text" id="name" required>
-      <span class="error" id="nameError">Name is required.</span>
+    <div class="section">
+      <h3>Personal Information</h3>
+      <div class="form-grid">
+        <div>
+          <label for="name">Full Name</label>
+          <input type="text" id="name" required>
+        </div>
+        <div>
+          <label for="dob">Date of Birth</label>
+          <input type="date" id="dob" required>
+        </div>
+        <div>
+          <label for="gender">Gender</label>
+          <select id="gender" required>
+            <option value="">Select</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div>
+          <label class="slider-label" for="age">Age <span id="ageValue">30</span></label>
+          <input type="range" id="age" min="0" max="120" value="30" oninput="document.getElementById('ageValue').innerText = this.value">
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input type="email" id="email" required>
+        </div>
+        <div>
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" pattern="\d{10}" required>
+        </div>
+        <div>
+          <label for="address">Address</label>
+          <input type="text" id="address" required>
+        </div>
+        <div>
+          <label for="bloodType">Blood Type</label>
+          <select id="bloodType" required>
+            <option value="">Select</option>
+            <option>A+</option>
+            <option>A-</option>
+            <option>B+</option>
+            <option>B-</option>
+            <option>AB+</option>
+            <option>AB-</option>
+            <option>O+</option>
+            <option>O-</option>
+          </select>
+        </div>
+      </div>
     </div>
 
-    <div class="form-group">
-      <label for="dob">Date of Birth</label>
-      <input type="date" id="dob" required>
-      <span class="error" id="dobError">Date of birth is required.</span>
-    </div>
-  </div>
-
-  <div class="form-row">
-    <div class="form-group">
-      <label for="gender">Gender</label>
-      <select id="gender" required>
-        <option value="">Select</option>
-        <option>Male</option>
-        <option>Female</option>
-        <option>Other</option>
-      </select>
-      <span class="error" id="genderError">Please select gender.</span>
+    <div class="section">
+      <h3>Emergency Contact</h3>
+      <div class="form-grid">
+        <div>
+          <label for="emergencyName">Name</label>
+          <input type="text" id="emergencyName" required>
+        </div>
+        <div>
+          <label for="emergencyPhone">Phone</label>
+          <input type="tel" id="emergencyPhone" pattern="\d{10}" required>
+        </div>
+      </div>
     </div>
 
-    <div class="form-group">
-      <label for="bloodType">Blood Type</label>
-      <select id="bloodType" required>
-        <option value="">Select</option>
-        <option>A+</option>
-        <option>A-</option>
-        <option>B+</option>
-        <option>B-</option>
-        <option>AB+</option>
-        <option>AB-</option>
-        <option>O+</option>
-        <option>O-</option>
-      </select>
-      <span class="error" id="bloodError">Please select blood type.</span>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label for="email">Email Address</label>
-    <input type="email" id="email" required>
-    <span class="error" id="emailError">Please enter a valid email.</span>
-  </div>
-
-  <div class="form-group">
-    <label for="phone">Phone Number</label>
-    <input type="tel" id="phone" required pattern="[0-9]{10}">
-    <span class="error" id="phoneError">Enter a 10-digit phone number.</span>
-  </div>
-
-  <div class="form-group">
-    <label for="address">Home Address</label>
-    <input type="text" id="address" required>
-    <span class="error" id="addressError">Address is required.</span>
-  </div>
-
-  <div class="form-row">
-    <div class="form-group">
-      <label for="emergencyName">Emergency Contact Name</label>
-      <input type="text" id="emergencyName" required>
-      <span class="error" id="emergencyNameError">Required.</span>
+    <div class="section">
+      <h3>Insurance</h3>
+      <div class="form-grid">
+        <div>
+          <label for="insuranceProvider">Provider</label>
+          <input type="text" id="insuranceProvider" required>
+        </div>
+        <div>
+          <label for="policyNumber">Policy Number</label>
+          <input type="text" id="policyNumber" required>
+        </div>
+      </div>
     </div>
 
-    <div class="form-group">
-      <label for="emergencyPhone">Emergency Phone</label>
-      <input type="tel" id="emergencyPhone" required pattern="[0-9]{10}">
-      <span class="error" id="emergencyPhoneError">10-digit phone required.</span>
+    <div class="section">
+      <h3>Medical History</h3>
+      <label for="conditions">List known conditions, allergies, or medications</label>
+      <textarea id="conditions" placeholder="e.g., asthma, penicillin allergy, metformin"></textarea>
     </div>
-  </div>
 
-  <div class="form-group">
-    <label for="insurance">Insurance Provider</label>
-    <input type="text" id="insurance" required>
-    <span class="error" id="insuranceError">Insurance provider is required.</span>
-  </div>
+    <div class="buttons">
+      <button type="submit" class="submit-btn">Submit</button>
+      <button type="reset" class="reset-btn">Reset</button>
+    </div>
 
-  <div class="form-group">
-    <label for="conditions">Medical Conditions</label>
-    <textarea id="conditions" placeholder="List any known conditions, allergies, or ongoing treatments..."></textarea>
-  </div>
-
-  <div class="buttons">
-    <button type="submit">Submit</button>
-    <button type="reset">Reset</button>
-  </div>
-</form>
+  </form>
+</div>
 
 <script>
   function validateForm() {
-    let valid = true;
-    const fields = [
-      { id: 'name', error: 'nameError' },
-      { id: 'dob', error: 'dobError' },
-      { id: 'gender', error: 'genderError' },
-      { id: 'bloodType', error: 'bloodError' },
-      { id: 'email', error: 'emailError', regex: /^[^@\s]+@[^@\s]+\.[^@\s]+$/ },
-      { id: 'phone', error: 'phoneError', regex: /^\d{10}$/ },
-      { id: 'address', error: 'addressError' },
-      { id: 'emergencyName', error: 'emergencyNameError' },
-      { id: 'emergencyPhone', error: 'emergencyPhoneError', regex: /^\d{10}$/ },
-      { id: 'insurance', error: 'insuranceError' },
-    ];
+    const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+    const phoneRegex = /^\d{10}$/;
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const ePhone = document.getElementById('emergencyPhone').value.trim();
 
-    fields.forEach(field => {
-      const input = document.getElementById(field.id);
-      const error = document.getElementById(field.error);
-      const value = input.value.trim();
-
-      if (!value || (field.regex && !field.regex.test(value))) {
-        error.style.display = 'block';
-        valid = false;
-      } else {
-        error.style.display = 'none';
-      }
-    });
-
-    return valid;
+    if (!emailRegex.test(email)) {
+      alert("Please enter a valid email address.");
+      return false;
+    }
+    if (!phoneRegex.test(phone)) {
+      alert("Phone number must be 10 digits.");
+      return false;
+    }
+    if (!phoneRegex.test(ePhone)) {
+      alert("Emergency phone must be 10 digits.");
+      return false;
+    }
+    return true;
   }
 </script>
-
 </body>
 </html>
