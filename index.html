@@ -3,227 +3,320 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Advanced Medical Form</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <title>Everwell Health Center - Patient Registration</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #3B82F6;
-      --light-bg: #f9fafb;
-      --input-border: #d1d5db;
-      --error-color: #ef4444;
+      --primary: #0e6ba8;
+      --secondary: #3cc1c0;
+      --light-bg: #f0f4f8;
+      --form-bg: #ffffff;
+      --text-color: #1f2937;
+      --muted-text: #6b7280;
+      --border-color: #d1d5db;
+      --error-color: #dc2626;
+      --success-color: #16a34a;
+      --font-main: 'Inter', sans-serif;
     }
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--light-bg);
+
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
-    .container {
-      max-width: 900px;
-      margin: 40px auto;
-      background: #fff;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+
+    html, body {
+      height: 100%;
+      font-family: var(--font-main);
+      background: linear-gradient(to bottom right, #e0f2fe, #ffffff);
+      color: var(--text-color);
+      overflow-x: hidden;
     }
-    h2 {
-      color: var(--primary);
+
+    header {
+      background: var(--primary);
+      color: white;
+      padding: 40px 20px 20px;
       text-align: center;
+      border-bottom: 4px solid var(--secondary);
     }
-    .section {
-      margin-top: 30px;
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
     }
-    .section h3 {
-      border-bottom: 2px solid var(--primary);
-      padding-bottom: 5px;
+
+    header p {
+      font-size: 1.2rem;
+      color: #dbeafe;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      background: var(--form-bg);
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
       margin-bottom: 20px;
+      color: var(--primary);
     }
+
+    .section {
+      margin-top: 40px;
+    }
+
+    .section h3 {
+      font-size: 1.4rem;
+      border-left: 6px solid var(--secondary);
+      padding-left: 10px;
+      margin-bottom: 20px;
+      color: var(--primary);
+    }
+
     .form-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 20px;
     }
+
     label {
       display: block;
-      margin-bottom: 5px;
       font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--text-color);
     }
-    input, select, textarea, .slider {
+
+    input, select, textarea {
       width: 100%;
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid var(--input-border);
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+      background-color: #f9fafb;
       font-size: 1rem;
+      transition: border 0.2s ease;
     }
-    textarea {
-      resize: vertical;
-      min-height: 100px;
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--primary);
+      outline: none;
+      background-color: #ffffff;
     }
+
     .slider-label {
       display: flex;
       justify-content: space-between;
-      font-weight: 500;
-      margin-bottom: 5px;
+      align-items: center;
+      font-weight: 600;
+      margin-top: 5px;
     }
+
+    .slider input[type=range] {
+      width: 100%;
+      margin-top: 5px;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
     .buttons {
       display: flex;
       justify-content: space-between;
       margin-top: 30px;
     }
+
     button {
-      padding: 12px 25px;
+      padding: 12px 30px;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       font-size: 1rem;
       cursor: pointer;
-      transition: 0.3s ease;
+      transition: background 0.3s ease, transform 0.2s ease;
     }
+
     .submit-btn {
       background: var(--primary);
-      color: #fff;
+      color: white;
     }
-    .reset-btn {
-      background: #e5e7eb;
-    }
+
     .submit-btn:hover {
-      background: #2563eb;
+      background: #1d4ed8;
+      transform: translateY(-2px);
     }
-    .error {
-      color: var(--error-color);
+
+    .reset-btn {
+      background: #f3f4f6;
+      color: #111827;
+    }
+
+    .reset-btn:hover {
+      background: #e5e7eb;
+      transform: translateY(-2px);
+    }
+
+    .form-note {
       font-size: 0.875rem;
-      display: none;
+      color: var(--muted-text);
       margin-top: 4px;
     }
-    @media(max-width: 700px) {
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #9ca3af;
+    }
+
+    @media(max-width: 768px) {
       .form-grid {
         grid-template-columns: 1fr;
+      }
+
+      .buttons {
+        flex-direction: column;
+        gap: 10px;
       }
     }
   </style>
 </head>
 <body>
-<div class="container">
-  <h2>Patient Registration Form</h2>
+  <header>
+    <h1>Everwell Health Center</h1>
+    <p>Dedicated to your lifelong wellness and care</p>
+  </header>
 
-  <form id="medicalForm" onsubmit="return validateForm()">
+  <div class="container">
+    <h2>Patient Registration Form</h2>
+    <form id="medicalForm" onsubmit="return validateForm()">
 
-    <div class="section">
-      <h3>Personal Information</h3>
-      <div class="form-grid">
-        <div>
-          <label for="name">Full Name</label>
-          <input type="text" id="name" required>
-        </div>
-        <div>
-          <label for="dob">Date of Birth</label>
-          <input type="date" id="dob" required>
-        </div>
-        <div>
-          <label for="gender">Gender</label>
-          <select id="gender" required>
-            <option value="">Select</option>
-            <option>Male</option>
-            <option>Female</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div>
-          <label class="slider-label" for="age">Age <span id="ageValue">30</span></label>
-          <input type="range" id="age" min="0" max="120" value="30" oninput="document.getElementById('ageValue').innerText = this.value">
-        </div>
-        <div>
-          <label for="email">Email</label>
-          <input type="email" id="email" required>
-        </div>
-        <div>
-          <label for="phone">Phone Number</label>
-          <input type="tel" id="phone" pattern="\d{10}" required>
-        </div>
-        <div>
-          <label for="address">Address</label>
-          <input type="text" id="address" required>
-        </div>
-        <div>
-          <label for="bloodType">Blood Type</label>
-          <select id="bloodType" required>
-            <option value="">Select</option>
-            <option>A+</option>
-            <option>A-</option>
-            <option>B+</option>
-            <option>B-</option>
-            <option>AB+</option>
-            <option>AB-</option>
-            <option>O+</option>
-            <option>O-</option>
-          </select>
+      <div class="section">
+        <h3>Personal Information</h3>
+        <div class="form-grid">
+          <div>
+            <label for="name">Full Name</label>
+            <input type="text" id="name" placeholder="e.g., Jane Doe" required>
+          </div>
+          <div>
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" required>
+          </div>
+          <div>
+            <label for="gender">Gender</label>
+            <select id="gender" required>
+              <option value="">Select</option>
+              <option>Male</option>
+              <option>Female</option>
+              <option>Non-binary</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="slider">
+            <label class="slider-label" for="age">Age <span id="ageValue">30</span></label>
+            <input type="range" id="age" min="0" max="120" value="30" oninput="document.getElementById('ageValue').innerText = this.value">
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="e.g., name@example.com" required>
+          </div>
+          <div>
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" pattern="\d{10}" placeholder="1234567890" required>
+          </div>
+          <div>
+            <label for="address">Address</label>
+            <input type="text" id="address" placeholder="123 Main St, City, State" required>
+          </div>
+          <div>
+            <label for="bloodType">Blood Type</label>
+            <select id="bloodType" required>
+              <option value="">Select</option>
+              <option>A+</option>
+              <option>A-</option>
+              <option>B+</option>
+              <option>B-</option>
+              <option>AB+</option>
+              <option>AB-</option>
+              <option>O+</option>
+              <option>O-</option>
+            </select>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="section">
-      <h3>Emergency Contact</h3>
-      <div class="form-grid">
-        <div>
-          <label for="emergencyName">Name</label>
-          <input type="text" id="emergencyName" required>
-        </div>
-        <div>
-          <label for="emergencyPhone">Phone</label>
-          <input type="tel" id="emergencyPhone" pattern="\d{10}" required>
-        </div>
-      </div>
-    </div>
-
-    <div class="section">
-      <h3>Insurance</h3>
-      <div class="form-grid">
-        <div>
-          <label for="insuranceProvider">Provider</label>
-          <input type="text" id="insuranceProvider" required>
-        </div>
-        <div>
-          <label for="policyNumber">Policy Number</label>
-          <input type="text" id="policyNumber" required>
+      <div class="section">
+        <h3>Emergency Contact</h3>
+        <div class="form-grid">
+          <div>
+            <label for="emergencyName">Name</label>
+            <input type="text" id="emergencyName" required>
+          </div>
+          <div>
+            <label for="emergencyPhone">Phone</label>
+            <input type="tel" id="emergencyPhone" pattern="\d{10}" placeholder="1234567890" required>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="section">
-      <h3>Medical History</h3>
-      <label for="conditions">List known conditions, allergies, or medications</label>
-      <textarea id="conditions" placeholder="e.g., asthma, penicillin allergy, metformin"></textarea>
-    </div>
+      <div class="section">
+        <h3>Insurance</h3>
+        <div class="form-grid">
+          <div>
+            <label for="insuranceProvider">Provider</label>
+            <input type="text" id="insuranceProvider" placeholder="e.g., Blue Cross" required>
+          </div>
+          <div>
+            <label for="policyNumber">Policy Number</label>
+            <input type="text" id="policyNumber" required>
+          </div>
+        </div>
+      </div>
 
-    <div class="buttons">
-      <button type="submit" class="submit-btn">Submit</button>
-      <button type="reset" class="reset-btn">Reset</button>
-    </div>
+      <div class="section">
+        <h3>Medical History</h3>
+        <label for="conditions">Conditions, allergies, or medications</label>
+        <textarea id="conditions" placeholder="e.g., asthma, penicillin allergy, metformin"></textarea>
+        <div class="form-note">List any ongoing or past medical concerns.</div>
+      </div>
 
-  </form>
-</div>
+      <div class="buttons">
+        <button type="submit" class="submit-btn">Submit</button>
+        <button type="reset" class="reset-btn">Reset</button>
+      </div>
+    </form>
+  </div>
 
-<script>
-  function validateForm() {
-    const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
-    const phoneRegex = /^\d{10}$/;
-    const email = document.getElementById('email').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const ePhone = document.getElementById('emergencyPhone').value.trim();
+  <footer>
+    &copy; 2025 Everwell Health Center. All rights reserved.
+  </footer>
 
-    if (!emailRegex.test(email)) {
-      alert("Please enter a valid email address.");
-      return false;
+  <script>
+    function validateForm() {
+      const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+      const phoneRegex = /^\d{10}$/;
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const ePhone = document.getElementById('emergencyPhone').value.trim();
+
+      if (!emailRegex.test(email)) {
+        alert("Please enter a valid email address.");
+        return false;
+      }
+      if (!phoneRegex.test(phone)) {
+        alert("Phone number must be 10 digits.");
+        return false;
+      }
+      if (!phoneRegex.test(ePhone)) {
+        alert("Emergency contact phone must be 10 digits.");
+        return false;
+      }
+      return true;
     }
-    if (!phoneRegex.test(phone)) {
-      alert("Phone number must be 10 digits.");
-      return false;
-    }
-    if (!phoneRegex.test(ePhone)) {
-      alert("Emergency phone must be 10 digits.");
-      return false;
-    }
-    return true;
-  }
-</script>
+  </script>
 </body>
 </html>
