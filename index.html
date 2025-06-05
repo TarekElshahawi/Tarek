@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Everwell Health Center - Patient Registration</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
@@ -183,6 +183,71 @@
         gap: 10px;
       }
     }
+
+    /* AI Support Box */
+    #support-box {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 280px;
+      font-family: var(--font-main);
+      z-index: 999;
+    }
+
+    #support-header {
+      background: var(--secondary);
+      color: white;
+      padding: 12px;
+      font-weight: 600;
+      border-radius: 12px 12px 0 0;
+      cursor: pointer;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    #chat-content {
+      display: none;
+      background: white;
+      border: 1px solid var(--border-color);
+      border-top: none;
+      border-radius: 0 0 12px 12px;
+      padding: 10px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    #chat-messages {
+      max-height: 200px;
+      overflow-y: auto;
+      margin-bottom: 10px;
+    }
+
+    .user-msg, .bot-msg {
+      margin: 6px 0;
+      padding: 10px;
+      border-radius: 10px;
+      max-width: 85%;
+      font-size: 0.9rem;
+    }
+
+    .user-msg {
+      background: var(--primary);
+      color: white;
+      text-align: right;
+      margin-left: auto;
+    }
+
+    .bot-msg {
+      background: #f3f4f6;
+      color: var(--text-color);
+    }
+
+    #chat-input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      font-size: 0.9rem;
+    }
   </style>
 </head>
 <body>
@@ -194,7 +259,6 @@
   <div class="container">
     <h2>Patient Registration Form</h2>
     <form id="medicalForm" onsubmit="return validateForm()">
-
       <div class="section">
         <h3>Personal Information</h3>
         <div class="form-grid">
@@ -231,6 +295,10 @@
           <div>
             <label for="address">Address</label>
             <input type="text" id="address" placeholder="123 Main St, City, State" required>
+          </div>
+          <div>
+            <label for="zipcode">Zip Code</label>
+            <input type="text" id="zipcode" pattern="\d{5}" placeholder="e.g., 90210" required>
           </div>
           <div>
             <label for="bloodType">Blood Type</label>
@@ -295,6 +363,17 @@
     &copy; 2025 Everwell Health Center. All rights reserved.
   </footer>
 
+  <!-- AI Support Widget -->
+  <div id="support-box">
+    <div id="support-header" onclick="toggleChat()">💬 Chat with Support</div>
+    <div id="chat-content">
+      <div id="chat-messages">
+        <div class="bot-msg">Hi! I'm your virtual assistant. How can I help you today?</div>
+      </div>
+      <input type="text" id="chat-input" placeholder="Type your message..." onkeydown="if(event.key==='Enter')sendMessage()">
+    </div>
+  </div>
+
   <script>
     function validateForm() {
       const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
@@ -316,6 +395,32 @@
         return false;
       }
       return true;
+    }
+
+    function toggleChat() {
+      const chat = document.getElementById("chat-content");
+      chat.style.display = chat.style.display === "block" ? "none" : "block";
+    }
+
+    function sendMessage() {
+      const input = document.getElementById("chat-input");
+      const msg = input.value.trim();
+      if (!msg) return;
+
+      const chatBox = document.getElementById("chat-messages");
+
+      const userMsg = document.createElement("div");
+      userMsg.className = "user-msg";
+      userMsg.innerText = msg;
+      chatBox.appendChild(userMsg);
+
+      const botMsg = document.createElement("div");
+      botMsg.className = "bot-msg";
+      botMsg.innerText = "Thanks for reaching out! A representative will contact you soon.";
+      setTimeout(() => chatBox.appendChild(botMsg), 800);
+
+      input.value = "";
+      chatBox.scrollTop = chatBox.scrollHeight;
     }
   </script>
 </body>
