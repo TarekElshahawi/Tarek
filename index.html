@@ -1,427 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Everwell Health Center - Patient Registration</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #0e6ba8;
-      --secondary: #3cc1c0;
-      --light-bg: #f0f4f8;
-      --form-bg: #ffffff;
-      --text-color: #1f2937;
-      --muted-text: #6b7280;
-      --border-color: #d1d5db;
-      --error-color: #dc2626;
-      --success-color: #16a34a;
-      --font-main: 'Inter', sans-serif;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html, body {
-      height: 100%;
-      font-family: var(--font-main);
-      background: linear-gradient(to bottom right, #e0f2fe, #ffffff);
-      color: var(--text-color);
-      overflow-x: hidden;
-    }
-
-    header {
-      background: var(--primary);
-      color: white;
-      padding: 40px 20px 20px;
-      text-align: center;
-      border-bottom: 4px solid var(--secondary);
-    }
-
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
-
-    header p {
-      font-size: 1.2rem;
-      color: #dbeafe;
-    }
-
-    .container {
-      max-width: 1000px;
-      margin: 40px auto;
-      background: var(--form-bg);
-      padding: 40px;
-      border-radius: 16px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: var(--primary);
-    }
-
-    .section {
-      margin-top: 40px;
-    }
-
-    .section h3 {
-      font-size: 1.4rem;
-      border-left: 6px solid var(--secondary);
-      padding-left: 10px;
-      margin-bottom: 20px;
-      color: var(--primary);
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
-    label {
-      display: block;
-      font-weight: 600;
-      margin-bottom: 6px;
-      color: var(--text-color);
-    }
-
-    input, select, textarea {
-      width: 100%;
-      padding: 12px;
-      border-radius: 10px;
-      border: 1px solid var(--border-color);
-      background-color: #f9fafb;
-      font-size: 1rem;
-      transition: border 0.2s ease;
-    }
-
-    input:focus, select:focus, textarea:focus {
-      border-color: var(--primary);
-      outline: none;
-      background-color: #ffffff;
-    }
-
-    .slider-label {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: 600;
-      margin-top: 5px;
-    }
-
-    .slider input[type=range] {
-      width: 100%;
-      margin-top: 5px;
-    }
-
-    textarea {
-      resize: vertical;
-      min-height: 120px;
-    }
-
-    .buttons {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 30px;
-    }
-
-    button {
-      padding: 12px 30px;
-      border: none;
-      border-radius: 10px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.3s ease, transform 0.2s ease;
-    }
-
-    .submit-btn {
-      background: var(--primary);
-      color: white;
-    }
-
-    .submit-btn:hover {
-      background: #1d4ed8;
-      transform: translateY(-2px);
-    }
-
-    .reset-btn {
-      background: #f3f4f6;
-      color: #111827;
-    }
-
-    .reset-btn:hover {
-      background: #e5e7eb;
-      transform: translateY(-2px);
-    }
-
-    .form-note {
-      font-size: 0.875rem;
-      color: var(--muted-text);
-      margin-top: 4px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 0.9rem;
-      color: #9ca3af;
-    }
-
-    @media(max-width: 768px) {
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .buttons {
-        flex-direction: column;
-        gap: 10px;
-      }
-    }
-
-    /* AI Support Box */
-    #support-box {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 280px;
-      font-family: var(--font-main);
-      z-index: 999;
-    }
-
-    #support-header {
-      background: var(--secondary);
-      color: white;
-      padding: 12px;
-      font-weight: 600;
-      border-radius: 12px 12px 0 0;
-      cursor: pointer;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    }
-
-    #chat-content {
-      display: none;
-      background: white;
-      border: 1px solid var(--border-color);
-      border-top: none;
-      border-radius: 0 0 12px 12px;
-      padding: 10px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-    }
-
-    #chat-messages {
-      max-height: 200px;
-      overflow-y: auto;
-      margin-bottom: 10px;
-    }
-
-    .user-msg, .bot-msg {
-      margin: 6px 0;
-      padding: 10px;
-      border-radius: 10px;
-      max-width: 85%;
-      font-size: 0.9rem;
-    }
-
-    .user-msg {
-      background: var(--primary);
-      color: white;
-      text-align: right;
-      margin-left: auto;
-    }
-
-    .bot-msg {
-      background: #f3f4f6;
-      color: var(--text-color);
-    }
-
-    #chat-input {
-      width: 100%;
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid var(--border-color);
-      font-size: 0.9rem;
-    }
-  </style>
+  <!--
+    Program name: patient-form.html
+    Author: Adam J.
+    Date created: 2025-06-04
+    Date last edited: 2025-06-04
+    Version: 1.0
+    Description: Patient registration form capturing demographic and health data.
+  -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>We'R'Docs Medical - Patient Registration</title>
+  <link href="style.css" rel="stylesheet">
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const today = new Date();
+      const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
+      document.getElementById("today-date").textContent = today.toLocaleDateString('en-US', options);
+    });
+  </script>
 </head>
+
 <body>
-  <header>
-    <h1>Everwell Health Center</h1>
-    <p>Dedicated to your lifelong wellness and care</p>
-  </header>
+  <!-- Banner/Header Section -->
+  <div id="header">
+    <img src="logo.png" alt="We'R'Docs Logo" height="60">
+    <h1>We'R'Docs Medical</h1>
+    <p>Today is: <span id="today-date"></span></p>
+  </div>
 
-  <div class="container">
-    <h2>Patient Registration Form</h2>
-    <form id="medicalForm" onsubmit="return validateForm()">
-      <div class="section">
-        <h3>Personal Information</h3>
-        <div class="form-grid">
-          <div>
-            <label for="name">Full Name</label>
-            <input type="text" id="name" placeholder="e.g., Jane Doe" required>
-          </div>
-          <div>
-            <label for="dob">Date of Birth</label>
-            <input type="date" id="dob" required>
-          </div>
-          <div>
-            <label for="gender">Gender</label>
-            <select id="gender" required>
-              <option value="">Select</option>
-              <option>Male</option>
-              <option>Female</option>
-              <option>Non-binary</option>
-              <option>Other</option>
+  <!-- Form Section -->
+  <div id="main-content">
+    <form action="thankyou.html">
+      <table>
+        <tr>
+          <td>First Name:</td>
+          <td><input type="text" name="firstName" maxlength="30" required></td>
+          <td>Middle Initial:</td>
+          <td><input type="text" name="middleInitial" maxlength="1"></td>
+          <td>Last Name:</td>
+          <td><input type="text" name="lastName" maxlength="30" required></td>
+        </tr>
+        <tr>
+          <td>Date of Birth:</td>
+          <td><input type="text" name="dob" placeholder="MM/DD/YYYY" required></td>
+          <td>SSN:</td>
+          <td><input type="password" name="ssn" maxlength="11" required></td>
+        </tr>
+        <tr>
+          <td>Address Line 1:</td>
+          <td colspan="5"><input type="text" name="address1" maxlength="30"></td>
+        </tr>
+        <tr>
+          <td>Address Line 2:</td>
+          <td colspan="5"><input type="text" name="address2" maxlength="30"></td>
+        </tr>
+        <tr>
+          <td>City:</td>
+          <td><input type="text" name="city" maxlength="30"></td>
+          <td>State:</td>
+          <td colspan="2">
+            <select name="state">
+              <!-- Options abbreviated -->
+              <option value="TX">Texas</option>
+              <option value="CA">California</option>
+              <option value="NY">New York</option>
+              <option value="FL">Florida</option>
+              <option value="IL">Illinois</option>
+              <!-- Add the full 50 + DC and PR -->
             </select>
-          </div>
-          <div class="slider">
-            <label class="slider-label" for="age">Age <span id="ageValue">30</span></label>
-            <input type="range" id="age" min="0" max="120" value="30" oninput="document.getElementById('ageValue').innerText = this.value">
-          </div>
-          <div>
-            <label for="email">Email</label>
-            <input type="email" id="email" placeholder="e.g., name@example.com" required>
-          </div>
-          <div>
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" pattern="\d{10}" placeholder="1234567890" required>
-          </div>
-          <div>
-            <label for="address">Address</label>
-            <input type="text" id="address" placeholder="123 Main St, City, State" required>
-          </div>
-          <div>
-            <label for="zipcode">Zip Code</label>
-            <input type="text" id="zipcode" pattern="\d{5}" placeholder="e.g., 90210" required>
-          </div>
-          <div>
-            <label for="bloodType">Blood Type</label>
-            <select id="bloodType" required>
-              <option value="">Select</option>
-              <option>A+</option>
-              <option>A-</option>
-              <option>B+</option>
-              <option>B-</option>
-              <option>AB+</option>
-              <option>AB-</option>
-              <option>O+</option>
-              <option>O-</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <div class="section">
-        <h3>Emergency Contact</h3>
-        <div class="form-grid">
-          <div>
-            <label for="emergencyName">Name</label>
-            <input type="text" id="emergencyName" required>
-          </div>
-          <div>
-            <label for="emergencyPhone">Phone</label>
-            <input type="tel" id="emergencyPhone" pattern="\d{10}" placeholder="1234567890" required>
-          </div>
-        </div>
-      </div>
-
-      <div class="section">
-        <h3>Insurance</h3>
-        <div class="form-grid">
-          <div>
-            <label for="insuranceProvider">Provider</label>
-            <input type="text" id="insuranceProvider" placeholder="e.g., Blue Cross" required>
-          </div>
-          <div>
-            <label for="policyNumber">Policy Number</label>
-            <input type="text" id="policyNumber" required>
-          </div>
-        </div>
-      </div>
-
-      <div class="section">
-        <h3>Medical History</h3>
-        <label for="conditions">Conditions, allergies, or medications</label>
-        <textarea id="conditions" placeholder="e.g., asthma, penicillin allergy, metformin"></textarea>
-        <div class="form-note">List any ongoing or past medical concerns.</div>
-      </div>
-
-      <div class="buttons">
-        <button type="submit" class="submit-btn">Submit</button>
-        <button type="reset" class="reset-btn">Reset</button>
-      </div>
+          </td>
+          <td>Zip:</td>
+          <td><input type="text" name="zip" maxlength="10"></td>
+        </tr>
+        <tr>
+          <td>Email:</td>
+          <td colspan="5"><input type="email" name="email" required></td>
+        </tr>
+        <tr>
+          <td>Describe Symptoms:</td>
+          <td colspan="5"><textarea name="symptoms" rows="3" cols="50"></textarea></td>
+        </tr>
+        <tr>
+          <td>Medical History:</td>
+          <td colspan="5">
+            <label><input type="checkbox" name="history" value="chickenpox"> Chicken Pox</label>
+            <label><input type="checkbox" name="history" value="measles"> Measles</label>
+            <label><input type="checkbox" name="history" value="covid"> COVID-19</label>
+            <label><input type="checkbox" name="history" value="smallpox"> Small Pox</label>
+            <label><input type="checkbox" name="history" value="tetanus"> Tetanus</label>
+          </td>
+        </tr>
+        <tr>
+          <td>Gender:</td>
+          <td colspan="2">
+            <label><input type="radio" name="gender" value="male"> Male</label>
+            <label><input type="radio" name="gender" value="female"> Female</label>
+            <label><input type="radio" name="gender" value="other"> Other</label>
+          </td>
+        </tr>
+        <tr>
+          <td>Vaccinated:</td>
+          <td>
+            <label><input type="radio" name="vaccinated" value="yes"> Yes</label>
+            <label><input type="radio" name="vaccinated" value="no"> No</label>
+          </td>
+        </tr>
+        <tr>
+          <td>Insurance:</td>
+          <td>
+            <label><input type="radio" name="insurance" value="yes"> Yes</label>
+            <label><input type="radio" name="insurance" value="no"> No</label>
+          </td>
+        </tr>
+        <tr>
+          <td>Health Scale (1-10):</td>
+          <td colspan="5">
+            <input type="range" min="1" max="10" name="health">
+          </td>
+        </tr>
+        <tr>
+          <td>User ID:</td>
+          <td><input type="text" name="userid" maxlength="20"></td>
+        </tr>
+        <tr>
+          <td>Password:</td>
+          <td><input type="password" name="password"></td>
+          <td>Re-enter Password:</td>
+          <td><input type="password" name="confirm"></td>
+        </tr>
+        <tr>
+          <td colspan="6">
+            <input type="reset" value="CLEAR AND START OVER">
+            <input type="submit" value="Submit">
+          </td>
+        </tr>
+      </table>
     </form>
   </div>
 
-  <footer>
-    &copy; 2025 Everwell Health Center. All rights reserved.
-  </footer>
-
-  <!-- AI Support Widget -->
-  <div id="support-box">
-    <div id="support-header" onclick="toggleChat()">💬 Chat with Support</div>
-    <div id="chat-content">
-      <div id="chat-messages">
-        <div class="bot-msg">Hi! I'm your virtual assistant. How can I help you today?</div>
-      </div>
-      <input type="text" id="chat-input" placeholder="Type your message..." onkeydown="if(event.key==='Enter')sendMessage()">
-    </div>
+  <!-- Footer Section -->
+  <div id="footer">
+    <p>We'R'Docs Medical &nbsp;&nbsp; | &nbsp;&nbsp;
+      <button onclick="alert('Contact us at info@werdocs.com')">Contact Us</button> &nbsp;&nbsp; | &nbsp;&nbsp;
+      <a href="https://facebook.com">Facebook</a> |
+      <a href="https://twitter.com">Twitter</a>
+    </p>
+    <p>PO BOX 18881, Sugar Land TX 77496</p>
   </div>
 
-  <script>
-    function validateForm() {
-      const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
-      const phoneRegex = /^\d{10}$/;
-      const email = document.getElementById('email').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const ePhone = document.getElementById('emergencyPhone').value.trim();
-
-      if (!emailRegex.test(email)) {
-        alert("Please enter a valid email address.");
-        return false;
-      }
-      if (!phoneRegex.test(phone)) {
-        alert("Phone number must be 10 digits.");
-        return false;
-      }
-      if (!phoneRegex.test(ePhone)) {
-        alert("Emergency contact phone must be 10 digits.");
-        return false;
-      }
-      return true;
-    }
-
-    function toggleChat() {
-      const chat = document.getElementById("chat-content");
-      chat.style.display = chat.style.display === "block" ? "none" : "block";
-    }
-
-    function sendMessage() {
-      const input = document.getElementById("chat-input");
-      const msg = input.value.trim();
-      if (!msg) return;
-
-      const chatBox = document.getElementById("chat-messages");
-
-      const userMsg = document.createElement("div");
-      userMsg.className = "user-msg";
-      userMsg.innerText = msg;
-      chatBox.appendChild(userMsg);
-
-      const botMsg = document.createElement("div");
-      botMsg.className = "bot-msg";
-      botMsg.innerText = "Thanks for reaching out! A representative will contact you soon.";
-      setTimeout(() => chatBox.appendChild(botMsg), 800);
-
-      input.value = "";
-      chatBox.scrollTop = chatBox.scrollHeight;
-    }
-  </script>
+  <!-- End of Document -->
 </body>
+
 </html>
