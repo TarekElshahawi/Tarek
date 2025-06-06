@@ -1,156 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Tarek Medical - Patient Registration</title>
-  <link href="style.css" rel="stylesheet">
-  <script>
-    function displayDate() {
-      const today = new Date();
-      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-      document.getElementById('current-date').innerText = today.toLocaleDateString(undefined, options);
-    }
-  </script>
+    <meta charset="UTF-8">
+    <title>Tarek Medical - Patient Registration</title>
+    <link href="style.css" rel="stylesheet">
+    <script>
+        function displayDate() {
+            const date = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById("date").innerHTML = "Today is: " + date.toLocaleDateString(undefined, options);
+        }
+    </script>
 </head>
 <body onload="displayDate()">
-
-<!--
+<!-- 
 Program name: index.html
 Author: Tarek Elshahawi
 Date created: 2025-06-04
 Date last edited: 2025-06-04
 Version: 1.12
-Description: Patient registration form for Tarek Medical.
+Description: Patient registration form capturing demographic data for Tarek Medical
 -->
 
-<div id="header">
-  <img src="Tarek medical.png" alt="Tarek Medical Logo" style="height: 80px;">
-  <h1>Tarek Medical</h1>
-  <p>Today is: <span id="current-date"></span></p>
-</div>
+    <!-- Header/Banner Section -->
+    <div class="banner">
+        <img src="TarekMedical.png" alt="Tarek Medical Logo" class="logo">
+        <div class="banner-text">
+            <h1>Tarek Medical</h1>
+            <p id="date"></p>
+        </div>
+    </div>
 
-<div id="form-section">
-  <h2>Patient Registration Form</h2>
-  <form>
-    <table>
-      <tr>
-        <td><label for="firstName">First Name:</label></td>
-        <td><input type="text" id="firstName" name="firstName" maxlength="30" required></td>
-        <td><label for="middleInitial">M.I.:</label></td>
-        <td><input type="text" id="middleInitial" name="middleInitial" maxlength="1"></td>
-        <td><label for="lastName">Last Name:</label></td>
-        <td><input type="text" id="lastName" name="lastName" maxlength="30" required></td>
-      </tr>
-      <tr>
-        <td><label for="dob">Date of Birth:</label></td>
-        <td><input type="text" id="dob" name="dob" placeholder="MM/DD/YYYY" required></td>
-        <td><label for="ssn">Social Security:</label></td>
-        <td colspan="3"><input type="password" id="ssn" name="ssn" maxlength="11" required></td>
-      </tr>
-      <tr>
-        <td><label for="address1">Address Line 1:</label></td>
-        <td colspan="5"><input type="text" id="address1" name="address1" maxlength="30" required></td>
-      </tr>
-      <tr>
-        <td><label for="address2">Address Line 2:</label></td>
-        <td colspan="5"><input type="text" id="address2" name="address2" maxlength="30"></td>
-      </tr>
-      <tr>
-        <td><label for="city">City:</label></td>
-        <td><input type="text" id="city" name="city" maxlength="30" required></td>
-        <td><label for="state">State:</label></td>
-        <td>
-          <select id="state" name="state" required>
-            <option value="">Select State</option>
-            <!-- Shortened for readability; make sure to include all 50 states + DC + PR -->
-            <option value="TX">Texas</option>
-            <option value="CA">California</option>
-            <option value="NY">New York</option>
-            <option value="FL">Florida</option>
-            <option value="PR">Puerto Rico</option>
-            <!-- Add remaining states here -->
-          </select>
-        </td>
-        <td><label for="zip">Zip Code:</label></td>
-        <td><input type="text" id="zip" name="zip" maxlength="10" required></td>
-      </tr>
-      <tr>
-        <td><label for="email">Email:</label></td>
-        <td colspan="5"><input type="email" id="email" name="email" required></td>
-      </tr>
-      <tr>
-        <td><label for="symptoms">Describe symptoms:</label></td>
-        <td colspan="5">
-          <textarea id="symptoms" name="symptoms" rows="3" cols="50"></textarea>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="6"><strong>Medical History (Check all that apply):</strong></td>
-      </tr>
-      <tr>
-        <td colspan="6">
-          <input type="checkbox" name="history" value="chickenpox"> Chicken Pox
-          <input type="checkbox" name="history" value="measles"> Measles
-          <input type="checkbox" name="history" value="covid"> Covid-19
-          <input type="checkbox" name="history" value="smallpox"> Small Pox
-          <input type="checkbox" name="history" value="tetanus"> Tetanus
-        </td>
-      </tr>
-      <tr>
-        <td><strong>Gender:</strong></td>
-        <td colspan="5">
-          <input type="radio" name="gender" value="male"> Male
-          <input type="radio" name="gender" value="female"> Female
-          <input type="radio" name="gender" value="other"> Other
-        </td>
-      </tr>
-      <tr>
-        <td><strong>Vaccinated?</strong></td>
-        <td colspan="5">
-          <input type="radio" name="vaccinated" value="yes"> Yes
-          <input type="radio" name="vaccinated" value="no"> No
-        </td>
-      </tr>
-      <tr>
-        <td><strong>Insurance?</strong></td>
-        <td colspan="5">
-          <input type="radio" name="insurance" value="yes"> Yes
-          <input type="radio" name="insurance" value="no"> No
-        </td>
-      </tr>
-      <tr>
-        <td><label for="health">How do you feel? (1–10):</label></td>
-        <td colspan="5"><input type="range" id="health" name="health" min="1" max="10"></td>
-      </tr>
-      <tr>
-        <td><label for="userID">User ID:</label></td>
-        <td colspan="5"><input type="text" id="userID" name="userID" maxlength="20" required></td>
-      </tr>
-      <tr>
-        <td><label for="password">Password:</label></td>
-        <td><input type="password" id="password" name="password" required></td>
-        <td><label for="confirmPassword">Re-enter Password:</label></td>
-        <td colspan="3"><input type="password" id="confirmPassword" name="confirmPassword" required></td>
-      </tr>
-      <tr>
-        <td colspan="6" style="text-align:center;">
-          <input type="reset" value="CLEAR AND START OVER">
-          <input type="submit" value="Submit">
-        </td>
-      </tr>
-    </table>
-  </form>
-</div>
+    <!-- Main Form Section -->
+    <form>
+        <h2>Patient Registration Form</h2>
+        <table>
+            <tr>
+                <td>First Name:</td>
+                <td><input type="text" maxlength="30" required></td>
+                <td>Middle Initial:</td>
+                <td><input type="text" maxlength="1"></td>
+                <td>Last Name:</td>
+                <td><input type="text" maxlength="30" required></td>
+            </tr>
+            <tr>
+                <td>Date of Birth:</td>
+                <td colspan="2"><input type="text" placeholder="MM/DD/YYYY" required></td>
+                <td>Social Security #:</td>
+                <td colspan="2"><input type="password" maxlength="11" required></td>
+            </tr>
+            <tr>
+                <td>Address Line 1:</td>
+                <td colspan="5"><input type="text" maxlength="30" required></td>
+            </tr>
+            <tr>
+                <td>Address Line 2:</td>
+                <td colspan="5"><input type="text" maxlength="30"></td>
+            </tr>
+            <tr>
+                <td>City:</td>
+                <td><input type="text" maxlength="30" required></td>
+                <td>State:</td>
+                <td>
+                    <select required>
+                        <option value="">Select</option>
+                        <!-- Only a few shown here. Add all 50 states, DC, PR in real version -->
+                        <option value="TX">Texas</option>
+                        <option value="CA">California</option>
+                        <option value="NY">New York</option>
+                        <option value="FL">Florida</option>
+                        <option value="IL">Illinois</option>
+                    </select>
+                </td>
+                <td>ZIP Code:</td>
+                <td><input type="text" maxlength="10" required></td>
+            </tr>
+            <tr>
+                <td>Email Address:</td>
+                <td colspan="2"><input type="email" required></td>
+                <td>Phone Number:</td>
+                <td colspan="2"><input type="tel" placeholder="e.g., 555-123-4567"></td>
+            </tr>
+            <tr>
+                <td>Describe Your Current Symptoms:</td>
+                <td colspan="5"><textarea rows="3" cols="50"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <fieldset>
+                        <legend>Check all that apply:</legend>
+                        <label><input type="checkbox"> Chicken Pox</label>
+                        <label><input type="checkbox"> Measles</label>
+                        <label><input type="checkbox"> Covid-19</label>
+                        <label><input type="checkbox"> Small Pox</label>
+                        <label><input type="checkbox"> Tetanus</label>
+                    </fieldset>
+                </td>
+            </tr>
+            <tr>
+                <td>Gender:</td>
+                <td colspan="2">
+                    <label><input type="radio" name="gender"> Male</label>
+                    <label><input type="radio" name="gender"> Female</label>
+                    <label><input type="radio" name="gender"> Other</label>
+                </td>
+                <td>Vaccinated?</td>
+                <td colspan="2">
+                    <label><input type="radio" name="vaccinated"> Yes</label>
+                    <label><input type="radio" name="vaccinated"> No</label>
+                </td>
+            </tr>
+            <tr>
+                <td>Do you have insurance?</td>
+                <td colspan="5">
+                    <label><input type="radio" name="insurance"> Yes</label>
+                    <label><input type="radio" name="insurance"> No</label>
+                </td>
+            </tr>
+            <tr>
+                <td>Health Status (1–10):</td>
+                <td colspan="5"><input type="range" min="1" max="10" value="5"></td>
+            </tr>
+            <tr>
+                <td>User ID:</td>
+                <td colspan="2"><input type="text" maxlength="20" required></td>
+                <td>Password:</td>
+                <td colspan="2"><input type="password" required></td>
+            </tr>
+            <tr>
+                <td>Re-enter Password:</td>
+                <td colspan="5"><input type="password" required></td>
+            </tr>
+            <tr>
+                <td colspan="3"><button type="reset">Clear and Start Over</button></td>
+                <td colspan="3"><button type="submit">Submit</button></td>
+            </tr>
+        </table>
+    </form>
 
-<div id="footer">
-  <p>Tarek Medical | PO BOX 18881, Sugar Land TX 77496</p>
-  <button onclick="alert('Contact form coming soon!')">Contact Us</button>
-  <p>
-    <a href="#">Facebook</a> |
-    <a href="#">Twitter</a>
-  </p>
-</div>
+    <!-- Footer Section -->
+    <div class="footer">
+        <p>Tarek Medical | PO BOX 18881 | Sugar Land, TX 77496</p>
+        <button onclick="alert('Contact us coming soon!')">Contact Us</button>
+        <p><a href="#">Facebook</a> | <a href="#">Twitter</a></p>
+    </div>
 
-<!-- End of document -->
+<!-- End of patient-form.html -->
 </body>
 </html>
