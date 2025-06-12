@@ -3,6 +3,7 @@ body {
     margin: 0;
     padding: 0;
     color: #2f4f4f;
+    font-family: "Times New Roman", Times, serif;
 }
 
 #header {
@@ -80,8 +81,6 @@ textarea {
     border-radius: 4px;
     color: #004d40;
     background-color: #fafaf0;
-    font-family: inherit;
-    font-size: 0.9em;
 }
 
 }
