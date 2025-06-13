@@ -193,9 +193,12 @@ Description: A basic patient registration form for a medical comapany called Tar
                 </td>
             </tr>
             <tr>
-                <td>Current State of Happiness (1-10)</td>
-                <td colspan="5"><input type="range" min="1" max="10" name="feeling" value="5"></td>
-            </tr>
+    		<td>Current State of Happiness (1-10)</td>
+    		<td colspan="5">
+        	    <input type="range" min="1" max="10" name="feeling" value="5" id="feeling-slider" oninput="updateFeelingValue()">
+        	    <span id="feeling-value">5</span>
+    		</td>
+	    </tr>
             <tr>
                 <td>Desired User ID:</td>
                 <td><input type="text" name="userid" maxlength="20"></td>
