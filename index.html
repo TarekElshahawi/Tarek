@@ -219,5 +219,13 @@ Description: A basic patient registration form for a medical comapany called Tar
     <div id="footer">
         <p>Tarek Medical | <a href="#">Contact Us</a> | PO BOX 18881, Houston, TX 77450</p>
     </div>
+<script>
+    function updateFeelingValue() {
+        const slider = document.getElementById('feeling-slider');
+        const output = document.getElementById('feeling-value');
+        output.textContent = slider.value;
+    }
+    window.onload = updateFeelingValue;
+</script>
 </body>
 </html>
