@@ -62,7 +62,7 @@ function reviewData() {
     .map(cb => cb.value)
     .join(", ") || "None selected";
 
-  const vaccinated = getRadioVal(form, "vaccinated");
+  const doctorvisit = getRadioVal(form, "doctorvisit");
   const language = getRadioVal(form, "language");
 
   let html = `<h3>PLEASE REVIEW THIS INFORMATION</h3><ul>`;
@@ -71,7 +71,7 @@ function reviewData() {
   html += `<li><strong>Email:</strong> ${email}</li>`;
   html += `<li><strongID:</strong> ${ssn}</li>`;
   html += `<li><strong>Address:</strong> ${address1}<br>${address2}<br>${city}, ${state} ${zip}</li>`;
-  html += `<li><strong>Vaccinated:</strong> ${vaccinated}</li>`;
+  html += `<li><strong>Visited Doctor in Past Year:</strong> ${doctorvisit}</li>`;
   html += `<li><strong>Primary Language:</strong> ${language}</li>`;
   html += `<li><strong>Medications Currently Being Taken:</strong> ${medCount}</li>`;
   html += `<li><strong>Health History:</strong> ${selectedHistory}</li>`;
