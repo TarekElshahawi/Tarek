@@ -144,11 +144,11 @@ Description: Homework 2 Patient registration form with review and validation
         </td>
       </tr>
       <tr>
-        <td>Desired Salary:</td>
-        <td colspan="5">
-          <input type="range" min="20000" max="200000" step="1000" id="salary" name="salary" oninput="updateSalary()">
-          $<span id="salaryDisplay">20000</span>/year
-        </td>
+        <td>Number of Medications:</td>
+          <td colspan="5">
+            <input type="range" min="0" max="15" step="1" id="medications" name="medications" oninput="updateMedCount()">
+            <span id="medicationsDisplay">0</span> currently taken
+          </td>
       </tr>
       <tr>
         <td>User ID:</td>
