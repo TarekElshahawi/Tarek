@@ -39,7 +39,7 @@ function reviewData() {
   form["userid"].value = userid;
   const password = form["password"].value;
   const repassword = form["repassword"].value;
-  const salary = form["salary"].value;
+  const medCount = form["medications"].value;
 
   const fullNameLower = (first + middle + last + userid).toLowerCase();
 
@@ -73,7 +73,7 @@ function reviewData() {
   html += `<li><strong>Address:</strong> ${address1}<br>${address2}<br>${city}, ${state} ${zip}</li>`;
   html += `<li><strong>Vaccinated:</strong> ${vaccinated}</li>`;
   html += `<li><strong>Home Status:</strong> ${home}</li>`;
-  html += `<li><strong>Salary Requested:</strong> $${salary}/year</li>`;
+  html += `<li><strong>Medications Currently Taken:</strong> ${medCount}</li>`;
   html += `<li><strong>Health History:</strong> ${selectedHistory}</li>`;
   html += `<li><strong>Described Symptoms:</strong> ${symptoms || "N/A"}</li>`;
   html += `<li><strong>User ID:</strong> ${userid}</li>`;
