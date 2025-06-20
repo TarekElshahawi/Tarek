@@ -6,14 +6,14 @@ window.onload = function () {
   const dd = String(today.getDate()).padStart(2, '0');
   dobField.max = `${yyyy}-${mm}-${dd}`;
   dobField.min = `${yyyy - 120}-${mm}-${dd}`;
-  updateSalary(); // set initial salary display
+  updateSalary();
 };
 
-function updateSalary() {
-  const slider = document.getElementById("salary");
-  const display = document.getElementById("salaryDisplay");
-  if (slider && display) {
-    display.textContent = slider.value;
+function updateMedCount() {
+  const medSlider = document.getElementById("medications");
+  const display = document.getElementById("medicationsDisplay");
+  if (medSlider && display) {
+    display.textContent = medSlider.value;
   }
 }
 
