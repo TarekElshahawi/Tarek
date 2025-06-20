@@ -73,7 +73,7 @@ function reviewData() {
   html += `<li><strong>Address:</strong> ${address1}<br>${address2}<br>${city}, ${state} ${zip}</li>`;
   html += `<li><strong>Vaccinated:</strong> ${vaccinated}</li>`;
   html += `<li><strong>Home Status:</strong> ${home}</li>`;
-  html += `<li><strong>Medications Currently Taken:</strong> ${medCount}</li>`;
+  html += `<li><strong>Medications Currently Being Taken:</strong> ${medCount}</li>`;
   html += `<li><strong>Health History:</strong> ${selectedHistory}</li>`;
   html += `<li><strong>Described Symptoms:</strong> ${symptoms || "N/A"}</li>`;
   html += `<li><strong>User ID:</strong> ${userid}</li>`;
