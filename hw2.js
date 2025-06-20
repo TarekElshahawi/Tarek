@@ -6,7 +6,8 @@ window.onload = function () {
   const dd = String(today.getDate()).padStart(2, '0');
   dobField.max = `${yyyy}-${mm}-${dd}`;
   dobField.min = `${yyyy - 120}-${mm}-${dd}`;
-  updateSalary();
+
+  updateMedCount();
 };
 
 function updateMedCount() {
