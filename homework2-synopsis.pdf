@@ -1,0 +1,23 @@
+Homework 2 Synopsis – Tarek Elshahawi
+
+This is a patient registration form for Tarek Medical.
+It includes the required blocks and validations from Homework 1, and expands to support more dynamic features.
+
+What the site does:
+- Collects name, address, medical history, contact info, and login credentials.
+- Displays tooltips on hover using title attributes.
+- Prevents bad input with regex patterns.
+- Uses JavaScript to validate passwords, date ranges, and slider behavior.
+- Redisplays all input via a dynamic Review button before final submission.
+
+What I’m happy with:
+- Password logic was successfully implemented using regex, lowercase checks, and a match condition.
+- The salary slider updates in real time.
+- The date of birth validation calculates today’s date and 120 years back.
+
+What’s unfinished or could be improved:
+
+- I struggled to load the state dropdown from an external source so I left it hardcoded.
+- All errors are displayed together under the review section instead of beside each field.
+- The review layout is functional but could be more visually polished.
+
