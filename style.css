@@ -72,6 +72,7 @@ td {
 input[type="text"],
 input[type="password"],
 input[type="email"],
+input[type="date"],
 input[type="range"],
 select,
 textarea {
@@ -83,8 +84,6 @@ textarea {
     background-color: #fafaf0;
     font-size: 1em;
     font-family: inherit;
-}
-
 }
 
 button {
@@ -110,4 +109,28 @@ input[type="checkbox"] {
 
 label {
     color: #3a3a6b;
+}
+
+#reviewOutput {
+    border: 2px dashed #888;
+    background-color: #fff5e6;
+    padding: 20px;
+    color: #3d3d3d;
+    font-size: 0.95em;
+    line-height: 1.5;
+    border-radius: 6px;
+}
+
+#reviewOutput h3 {
+    color: #b3541e;
+    margin-bottom: 10px;
+}
+
+#reviewOutput ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+#reviewOutput li {
+    margin-bottom: 5px;
 }
