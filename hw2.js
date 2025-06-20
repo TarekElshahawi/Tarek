@@ -63,7 +63,7 @@ function reviewData() {
     .join(", ") || "None selected";
 
   const vaccinated = getRadioVal(form, "vaccinated");
-  const home = getRadioVal(form, "home");
+  const language = getRadioVal(form, "language");
 
   let html = `<h3>PLEASE REVIEW THIS INFORMATION</h3><ul>`;
   html += `<li><strong>Name:</strong> ${first} ${middle} ${last}</li>`;
@@ -72,7 +72,7 @@ function reviewData() {
   html += `<li><strongID:</strong> ${ssn}</li>`;
   html += `<li><strong>Address:</strong> ${address1}<br>${address2}<br>${city}, ${state} ${zip}</li>`;
   html += `<li><strong>Vaccinated:</strong> ${vaccinated}</li>`;
-  html += `<li><strong>Home Status:</strong> ${home}</li>`;
+  html += `<li><strong>Primary Language:</strong> ${language}</li>`;
   html += `<li><strong>Medications Currently Being Taken:</strong> ${medCount}</li>`;
   html += `<li><strong>Health History:</strong> ${selectedHistory}</li>`;
   html += `<li><strong>Described Symptoms:</strong> ${symptoms || "N/A"}</li>`;
